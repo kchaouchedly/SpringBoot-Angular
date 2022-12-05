@@ -1,37 +1,39 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './Components/header/header.component';
-import { FooterComponent } from './Components/footer/footer.component';
-import { SidebarComponent } from './Components/sidebar/sidebar.component';
-import { AddContratComponent } from './Contrat/add-contrat/add-contrat.component';
-import { ContratRoutingModule } from './Contrat/contart-routing.module';
-import { ContartModule } from './Contrat/contrat-module';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ListContratComponent } from './Contrat/list-contrat/list-contrat.component';
-import { DashboardComponent } from './Components/dashboard/dashboard.component';
-import { ComponentsModule } from './Components/components.module';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
+import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
+import { BoardUserComponent } from './board-user/board-user.component';
+
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-   
-    DashboardComponent,
-   
-
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    ProfileComponent,
+    BoardAdminComponent,
+    BoardModeratorComponent,
+    BoardUserComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule , 
-     ContartModule, 
-     ReactiveFormsModule,
-     ComponentsModule
-
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
