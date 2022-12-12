@@ -1,0 +1,130 @@
+
+
+
+   
+     <style>
+      .caption{
+        width: 150%;
+        z-index: 1;
+        top: 40%;
+        text-transform: uppercase;
+        position : absolute;
+  left : 200px;
+  top  : 90px;
+      }
+      
+.btn-primary {
+  border-radius: 25px;
+  border: none;
+  background-color: #EC1362;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-primary:hover {
+  box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.5);
+  transform: translateY(-3px);
+}
+.btn-danger{
+  border-radius: 25px;
+  border: none;
+  background-color: #EC1362;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-danger:hover {
+  box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.5);
+  transform: translateY(-3px);
+}
+.btn-warning {
+  border-radius: 25px;
+  border: none;
+  background-color:#b2b2b2;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-warning:hover {
+  box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.5);
+  transform: translateY(-3px);
+}
+
+     </style>
+
+   
+<app-header></app-header> 
+<app-sidebar></app-sidebar>
+<div  class="caption d-flex flex-column align-items  ">
+  <div class="content-wrapper">
+<div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+     <div class="card-body">
+            <h4 class="card-title"> Ajouter Equipe </h4>
+            <p class="card-description"></p>
+            <form [formGroup]="equipeform " (ngSubmit)="submit()">
+           
+            
+              <div class="form-group">
+                <label for="exampleInputUsername1">Nom equipe</label>
+                <input  [ngClass]="{'is-invalid' : submitted && f['nomEquipe'].errors}"  formControlName="nomEquipe" 
+                class="form-control phone" maxlength="28" placeholder="Entrer le non de l'equipe..." />
+                <div *ngIf="f['nomEquipe'].errors" class="invalid-feedback">
+                  <div *ngIf="f['nomEquipe'].errors?.['required']" >
+                    <i> le nom de equipe est obigatoire</i>
+                    </div>
+                    <div *ngIf="f['nomEquipe'].errors?.['minLength']">
+                <i>minLength</i>
+                  
+                </div>
+                </div>
+            </div>
+       
+          
+              <div class="form-group">
+                <label for="exampleInputEmail1">Niveau</label>
+             <select   [ngClass]="{'is-invalid' : submitted && f['niveau'].errors}"   class="form-control phone"  id="ddlViewBy"  formControlName="niveau"  >
+             <option class="dropdown-item" value=" JUNIOR"> JUNIOR</option>
+             <option class="dropdown-item" value=" SENIOR "> SENIOR </option>
+             <option class="dropdown-item" value=" EXPERT"> EXPERT</option>
+
+             </select>
+             <div *ngIf="f['niveau'].errors" class="invalid-feedback">
+              <div *ngIf="f['niveau'].errors?.['required']" >
+             <i> le niveau est obigatoire</i>
+              </div>
+              </div>
+              </div>
+        
+ 
+              <div class="form-group">
+                <input class="btn-primary " type="submit" name="submit_reg" value="Ajouter">
+                
+            </div>
+     
+       
+        
+ </form>
+           
+           
+          </div>
+        
+      
+        </div>
+
+</div>
+<app-footer></app-footer>
+
+      </div>

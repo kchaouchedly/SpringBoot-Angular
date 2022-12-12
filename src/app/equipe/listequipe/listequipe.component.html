@@ -1,0 +1,164 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<app-footer></app-footer>
+<style>
+
+
+
+      .caption{
+        width: 86%;
+        z-index: 1;
+        top: 40%;
+        text-transform: uppercase;
+        position : absolute;
+  left : 200px;
+  top  : 95px;
+  size-adjust: 10px;
+  
+      }
+      .my-custom-scrollbar {
+position: relative;
+height: 440px;
+
+overflow: auto;
+}
+      .table-wrapper-scroll-y {
+display: block;
+}
+.btn-primary {
+  border-radius: 25px;
+  border: none;
+  background-color: #EC1362;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-primary:hover {
+  box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.5);
+  transform: translateY(-3px);
+}
+.btn-danger{
+  border-radius: 25px;
+  border: none;
+  background-color: #EC1362;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-danger:hover {
+  box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.5);
+  transform: translateY(-3px);
+}
+.btn-warning {
+  border-radius: 25px;
+  border: none;
+  background-color:#b2b2b2;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-top: 20px;
+  text-transform: uppercase;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-warning:hover {
+  box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.5);
+  transform: translateY(-3px);
+}
+
+
+      </style>
+<script>
+    $('table').scrollTableBody();
+</script>
+
+<div class="caption d-flex flex-column align-items ">
+  
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Liste des Equipes </h4>
+        <div id="">
+          <div >
+              <input type="text" class="search-query form-control" placeholder="Search With Email Nom Equipe"  name="nomEquipe [(ngModel)]="nomEquipe>
+           
+                  <button class=" btn-warning" type="button" (click)="findEquipeByNOm(nomEquipe)"> search
+                </button>
+      
+          </div>
+  
+      </div>
+        <p class="card-description">
+        
+        <button type="submit" class=" btn-primary me-2"[routerLink]="['/addequipe']" > Ajouter Un Equipe  </button>
+        <button type="submit" class=" btn-warning  me-2"(click)="getUsersListPdf()" > Export PDF  </button>
+        </p>
+    
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+          <table class="table table-dark ">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Niveau</th>
+                    <th>Action</th>
+                    <th>Action</th>
+           
+            
+                </tr>
+            </thead>
+            <tbody>
+     
+                <tr *ngFor="let equipe of listequipes index as i">
+                <!-- <div [ngStyle]="{'backgroundColor':equipe.nomEquipe=='hhhh'?'red':'green'}">
+                    index: {{i}}--> 
+                    <td>{{equipe.idEquipe}}</td>
+                    <td>{{equipe.nomEquipe}}</td>
+                    <td>{{equipe.niveau}}</td>
+                 <!-- </div>-->
+                    <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deleteEquipe(equipe.idEquipe)" ><span class="glyphicon glyphicon-remove"></span> Delete</button></td>
+     <td class="text-center"><button class =" btn-warning btn-xs" (click)="showFormUpdate(equipe)" > Update</button></td>
+                  </tr>
+               
+            </tbody>
+            
+          </table>
+      
+          <div *ngIf="show">
+            <app-editequipe [equipe]="singleEquipe" (test)="afterrecvData($event)"></app-editequipe>
+            </div>
+            
+            <pagination-controls
+            previousLabel="Precedent"
+            nextLabel="Suivant"
+        [responsive]="true"
+        (pageChange)="handlepagechange($event)"
+            ></pagination-controls>
+            <ul>
+              <li  
+              class="list-group-item"
+              *ngFor="let e of listequipes | paginate:{
+              itemsPerPage:PAGESIZE,currentPage:PAGE,
+              totalItems:count
+              } ;let i = index "
+             
+              [class.active] = "i === CURRENTINDEX"
+              
+              >
+             
+            
+            </li>
+            </ul>
+        </div>
+      </div>
+   
+    </div>
+
+  </div>
