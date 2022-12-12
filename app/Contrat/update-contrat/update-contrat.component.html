@@ -1,0 +1,45 @@
+<app-header></app-header>
+   <app-sidebar>
+ </app-sidebar>
+ 
+<div  class="caption d-flex flex-column align-items  ">
+  <div class="content-wrapper">
+<div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+     <div class="card-body">
+            <h4 class="card-title"> Modifier Contart </h4>
+            <p class="card-description"></p>
+            <form class="forms-sample" #f="ngForm">
+              <div class="form-group">
+                <label for="exampleInputUsername1">Date Debut</label>
+                <input type="date" class="form-control" id="datedebut"  placeholder="datedebut" [(ngModel)]="contrattt.dateDebutContrat" [ngModel]  [ngModelOptions]="{standalone: true}" name="first">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Date Fin</label>
+                <input type="date" class="form-control" id="datefin"  [(ngModel)]="contrattt.dateFinContrat" [ngModel]  [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">specialite :</label>
+                <select id="ddlViewBy"   [(ngModel)]="contrattt.specialite" [ngModel]  [ngModelOptions]="{standalone: true}" >
+                  <option class="dropdown-item" value="CLOUD" >CLOUD</option>
+                  <option class="dropdown-item" value="IA" >IA</option>
+                  <option class="dropdown-item" value="RESEAUX">RESEAUX</option>
+                  <option class="dropdown-item" value="SECURITE">SECURITE</option>
+                </select>
+                
+              </div>
+              <div class="form-group">
+                <label for="exampleInputConfirmPassword1">Montant Contrat</label>
+                <input type="number" class="form-control" id="montant_contrat" [(ngModel)]="contrattt.montantContrat" [ngModel]  [ngModelOptions]="{standalone: true}">
+              </div>
+             
+              <button type="submit" class="btn btn-primary me-2" (click)="updatecontrat()">Submit</button>
+              <button class="btn btn-light">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div></div>
+</div>
+
+
+    <app-footer></app-footer>
