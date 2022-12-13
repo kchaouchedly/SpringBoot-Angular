@@ -1,0 +1,11 @@
+.main-panel{
+    width: 85%;
+    z-index: 1;
+    top: 40%;
+    text-transform: uppercase;
+    position : absolute;
+left : 210px;
+top  : 95px;
+size-adjust: 1px;
+
+  }

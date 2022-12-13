@@ -1,0 +1,146 @@
+
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<style>
+
+
+      .caption{
+        width: 150%;
+        z-index: 1;
+        top: 40%;
+        text-transform: uppercase;
+        position : absolute;
+  left : 210px;
+  top  : 95px;
+  size-adjust: 1px;
+  
+      }
+      .my-custom-scrollbar {
+position: relative;
+height: 250px;
+
+
+overflow: auto;
+}
+      .table-wrapper-scroll-y {
+display: block;
+}
+      </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+
+<script>
+    $('table').scrollTableBody();
+
+</script>
+
+<div class="caption d-flex flex-column align-items ">
+  
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Liste des Contrats </h4>
+        <p class="card-description">
+        
+        <button type="submit" class="btn btn-primary me-2" (click)="add()" > Ajouter Un Contrat  </button>
+        <button type="submit" class="btn btn-primary me-2" (click)="pdfList()" > PDF LIST </button>
+        </p>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar" >
+          <p style="margin-left: 950px"> <input  id="myInput"  type="text" placeholder="Search..">
+          </p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th> ID</th>
+                <th>
+                  Date debut
+                </th>
+                <th>
+                  Date fin
+                </th>
+                <th>
+                  Specialite
+                </th>
+                <th>
+                  Montant contrat
+                </th>
+               
+                </tr>
+            </thead>
+            <tbody  id="myTable" *ngFor="let c of contrats " >
+              <tr>
+                <td>
+                  {{c.idContrat}}
+                </td>
+                <td>
+                  {{c.dateDebutContrat}}
+                </td>
+                <td>
+                  {{c.dateFinContrat}}
+                </td>
+                <td>
+                 {{c.specialite}}
+                </td>
+                <td>
+                 {{c.montantContrat}}
+                </td>
+                <td>  
+                   
+            <button   type="submit" class="btn btn-danger btn-sm" (click)="deletcontrat(c.idContrat)" > Supprimer </button>
+              <button type="submit" class="btn btn-secondary btn-sm"  (click)="getDetails(c)"  > Modifier </button> 
+              <button type="submit" class="btn btn-secondary btn-sm"  (click)="pdfById(c.idContrat)"  > <i class="bi bi-file-pdf"></i> PDF </button> 
+              <i class="bi bi-file-pdf"></i>
+            
+                         
+              </tr>
+              
+             
+            </tbody>
+          </table>
+       
+
+
+
+          <h4 class="card-title">Chifre D'Affaire </h4>
+  <div class="form-group">
+    <label for="exampleInputUsername1">Date Debut</label>
+    <input type="date" class="" id="datedebut"  placeholder="datedebut" [(ngModel)]="startDate" [ngModel]  [ngModelOptions]="{standalone: true}"  name="first">
+    <label for="exampleInputEmail1">Date Fin</label>
+    <input type="date" class="" id="datefin" [(ngModel)]="endDate" [ngModel]  [ngModelOptions]="{standalone: true}"  >
+    <button type="submit" class="btn btn-secondary btn-sm" (click)="getchifre()" > Calculer </button>
+    
+    <label for="exampleInputUsername1" >  Montant: </label>
+    <input type="number" class="" id="montant" [(ngModel)]="montant">
+  </div>
+    <div class="form-group">
+    <button type="submit" class="btn btn-secondary btn-sm" (click)="getnbr()" > Calculer1 </button>
+    <label for="exampleInputUsername1" >  Nombre non valide: </label>
+    <input type="number" class="" id="montant" [(ngModel)]="nbr">
+  </div>
+  
+        </div>
+      </div>
+
+      <div *ngIf="showDetails">
+        <app-add-contrat [data]="currentContrat"  (button)="button($event)"></app-add-contrat> 
+    </div>
+    </div>
+
+ 
+  </div>
+  
+
+  
+  <app-footer></app-footer>
