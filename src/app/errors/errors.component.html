@@ -1,0 +1,11 @@
+<!-- <p>errors works!</p> -->
+<div *ngIf="validator.invalid">
+  <div *ngIf="validator.errors?.['required']">
+    <span class="text-danger">le champ nom universite est required</span>
+
+  </div>
+  <div *ngIf="validator.errors?.['minlength']">
+    <span class="text-danger">  Minimum 8 lettres</span>
+      </div>
+  </div>
+

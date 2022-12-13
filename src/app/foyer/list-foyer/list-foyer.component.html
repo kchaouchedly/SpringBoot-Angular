@@ -1,0 +1,120 @@
+<!-- <p>list-foyer works!</p> -->
+
+<div class="container">
+  <div class="card">
+    <h5 class="card-header">Liste des foyers</h5>
+    <div class="card-body">
+
+     <div class="table-responsive">
+          <table class="table align-items-center">
+              <thead class="thead-light">
+                  <tr>
+                      <th scope="col" class="sort" data-sort="name">date_debut contrat Foyer</th>
+
+                      <th >date_Fin contrat Foyer</th>
+                      <th >nombre de place </th>
+                      <th >type</th>
+
+                      <th>Action</th>
+                </tr>
+              </thead>
+              <tbody class="list">
+
+                <tr *ngFor="let foyer of foyers;let i = index">
+                  <td>
+                    {{foyer.date_debutFoyer}}
+                  </td>
+                  <td>
+                    {{foyer.date_FinFoyer}}
+                  </td>
+                  <td>
+                    {{foyer.nbplace}}
+                  </td>
+                  <td>
+                    {{foyer.type}}
+                  </td>
+
+
+
+                    <td >
+                        <div class="dropdown">
+                            <a class="btn btn-sm btn-icon-only " style="color: rgb(31, 29, 29);" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-ellipsis-v"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                <a class="dropdown-item"  (click)="deleteFoy(foyer.idU,i)"  >Delete</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#update"  (click)="showFormUpdate(foyer)" >Update</a>
+                            </div>
+                        </div>
+                      </td>
+
+                  </tr>
+              </tbody>
+          </table>
+     </div>
+    </div>
+    <div class="text-center my-2">
+    <button type="button" class="btn btn-primary" style="width: 25vw;" data-toggle="modal" data-target="#exampleModal">
+     Ajouter une Foyer
+    </button>
+    </div>
+
+  </div>
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ajouter une Foyer</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form #f="ngForm">
+                <div class="form-group">
+                    <label for="example-text-input" class="form-control-label"> date_deb foyer</label>
+                    <input class="form-control" type="text" required minlength="3" name="date_debutFoyer" [(ngModel)]="foy.date_debutFoyer"  #date_debutFoyer="ngModel">
+                    <div *ngIf="date_debutFoyer.invalid">
+                      <app-errors [validator]="date_debutFoyer"></app-errors>
+                      </div>
+                </div>
+                <div class="form-group">
+                  <label for="example-text-input" class="form-control-label">date_Fin Foyer </label>
+                  <input class="form-control" type="date_FinFoyer" required minlength="3" name="date_FinFoyer" [(ngModel)]="foy.date_FinFoyer"  #date_FinFoyer="ngModel">
+                  <div *ngIf="date_FinFoyer.invalid">
+                    <app-errors [validator]="date_FinFoyer"></app-errors>
+                    </div>
+              </div>
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">nbplace dans le foyer</label>
+                <input class="form-control" type="number" required minlength="3" name="nbplace" [(ngModel)]="foy.nbplace"  #nbplace="ngModel">
+                <div *ngIf="nbplace.invalid">
+                  <app-errors [validator]="nbplace"></app-errors>
+                  </div>
+            </div>
+
+            <div class="form-group">
+              <label for="example-text-input" class="form-control-label">type de foyer</label>
+              <input class="form-control" type="text" required minlength="3" name="type" [(ngModel)]="foy.type"  #type="ngModel">
+              <div *ngIf="type.invalid">
+                <app-errors [validator]="type"></app-errors>
+                </div>
+          </div>
+
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="ajouterfoyer(f.value)" [disabled]="f.invalid">Ajouter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="affichage">
+      <app-update-foyer [foy]="singleFoy"></app-update-foyer>
+    </div>
+
+</div>

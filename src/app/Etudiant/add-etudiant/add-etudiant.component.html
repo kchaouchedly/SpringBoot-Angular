@@ -1,0 +1,88 @@
+
+
+     <style>
+      .caption{
+        width: 150%;
+        z-index: 1;
+        top: 40%;
+        text-transform: uppercase;
+        position : absolute;
+  left : 200px;
+  top  : 90px;
+      }
+     </style>
+     <script>
+        $('.dropdown-toggle').dropdown()
+
+        
+     </script>
+
+<hr>
+     <div class="card-body">
+            <h4 class="card-title"> Gestion Etudiant </h4>
+            <p class="card-description"></p>
+         <!--  <form class="forms-sample" #f="ngForm" (submit)="submit(f)">--> 
+              <form class="forms-sample"[formGroup]="formgroup" >
+              <div class="form-group">
+                <label for="exampleInputUsername1">Nom Etudiant</label>
+               <!-- <input type="text" [(ngModel)]="etudiant.nomE" [ngModel]  [ngModelOptions]="{standalone: true}"   class="form-control" id="exampleInputUsername1" placeholder="Nom Etudiant"  >-->
+               <input type="text" formControlName="nomE"  placeholder="Nom de l'Etudiant" class="form-control"  > 
+             <div style="color:red  " *ngIf="name?.invalid ">
+              <div  style="color:red  " *ngIf="name?.errors?.['required']">Ce champ est obligatoire </div>
+             </div> 
+             <div style="color:red  " *ngIf="name?.invalid ">
+              <div  style="color:red  " *ngIf="name?.errors?.['minlength']">Minimun 5 caractére  </div>
+             </div> 
+             <div  style="color:red  " *ngIf="name?.invalid ">
+              <div style="color:red  " *ngIf="name?.errors?.['maxlength']">Maximun 10 caractére  </div>
+             </div> 
+        </div>
+  <div class="form-group">
+  <label for="exampleInputEmail1">Prenom De l'Etudiant</label>
+  <!--<input type="text" [(ngModel)]="etudiant.prenomE" [ngModel]  [ngModelOptions]="{standalone: true}"  class="form-control" id="exampleInputEmail1" placeholder="Prenom Etudiant">-->
+  <input type="text" placeholder="Prenom de l'Etudiant" formControlName="prenomE"  class="form-control" id="exampleInputUsername1"  > 
+  <div style="color:red  " *ngIf="prenom?.invalid ">
+    <div style="color:red  " *ngIf="prenom?.errors?.['required']">Ce champ est obligatoire </div>
+   </div> 
+   <div style="color:red  " *ngIf="prenom?.invalid ">
+    <div style="color:red  " *ngIf="prenom?.errors?.['minlength']">Minimun 5 caractére  </div>
+   </div> 
+   <div style="color:red  " *ngIf="prenom?.invalid ">
+    <div style="color:red  " *ngIf="prenom?.errors?.['maxlength']">Maximun 10 caractére  </div>
+   </div> 
+   
+  </div>
+             <div class="form-group">
+                    <label for="Date">Date</label>
+            <!--      <input type="date" [ngModel]="etudiant.datedebut | date:'yyyy-MM-dd'" (ngModelChange)="etudiant.datedebut = $event" type="date" name="startDate"  class="form-control"/> -->  
+            <input type="date" formControlName="datedebut" > 
+            <div style="color:red  " *ngIf="datedebut?.invalid">
+              <div  style="color:red  " *ngIf="prenom?.errors">   Selectionnez une date  </div>
+            </div> 
+
+          
+          </div> 
+           
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Option</label>
+                 <!--   <select  style="width: 1000px;" id="ddlViewBy"[(ngModel)]="etudiant.opt" [ngModel]  [ngModelOptions]="{standalone: true}" > -->
+                  <select  style="width: 1000px;" id="ddlViewBy" formControlName="opt"  class="form-control" >  
+              
+                      <option class="dropdown-item" value="" ></option>
+                      <option class="dropdown-item" value="GAMIX" >Gamix</option>
+                      <option class="dropdown-item" value="SE" >SE</option>
+                      <option class="dropdown-item" value="SIM">SIM</option>
+                      <option class="dropdown-item" value="NIDS">NIDS</option>
+                    </select>
+                    <div style="color:red  " *ngIf="opt?.invalid ">
+                      <div style="color:red  " *ngIf="opt?.errors">Selectionnez une option</div>
+                    </div> 
+                          
+                </div>
+              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+             <button  [disabled]="formgroup.invalid" (click)="submit(formgroup.value)" class="btn btn-primary me-2">Envoyer</button>
+             
+            </form>
+          </div>
+     
+

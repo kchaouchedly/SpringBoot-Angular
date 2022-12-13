@@ -1,0 +1,99 @@
+
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<style>
+
+
+      .caption{
+        width: 150%;
+        z-index: 1;
+        top: 40%;
+        text-transform: uppercase;
+        position : absolute;
+  left : 200px;
+  top  : 95px;
+  size-adjust: 10px;
+  
+      }
+      .my-custom-scrollbar {
+position: relative;
+height: 440px;
+
+overflow: auto;
+}
+      .table-wrapper-scroll-y {
+display: block;
+}
+      </style>
+<script>
+    $('table').scrollTableBody();
+</script>
+
+<div class="caption d-flex flex-column align-items ">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Liste des Etudiants </h4>
+        <p class="card-description">
+         <button class="m-3 btn btn-sm btn-danger" >
+      Remove All
+    </button>
+        <button type="submit" class="btn btn-primary me-2"(click)="add()"> Ajouter Un Etudiant  </button>
+        </p>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th> Identifiant</th>
+                <th>
+                  Nom De l'Etudiant
+                </th>
+                <th>
+                  Date Debut 
+                </th>
+                <th>
+                  Prenom De l'Etudiant
+     
+                </th>
+                <th>
+              Specialité
+                </th>
+                <th>
+                Action
+                    </th>
+               
+                </tr>
+            </thead>
+            <tr *ngFor=" let e of all">
+              <td>
+              {{e.idEtudiant}}
+              </td>
+              <td>
+            {{e.prenomE}}
+              </td>
+              <td>
+              {{e.datedebut}}
+              <td>
+              {{e.nomE}}
+              </td>
+              <td>
+            {{e.opt}}
+              </td>
+              <td>  
+               
+                <button  style="color:red" type="submit" class="btn btn-danger btn-sm" (click)="deleteetu(e.idEtudiant)" > Supprimer </button>
+                <button style="color:blue"  type="submit" class="btn btn-secondary btn-sm" (click)="getAffichage(e)" > Modifier </button> 
+                 </td>
+         
+</tr>
+            
+          </table>
+
+        </div>
+      </div>
+      <div *ngIf="affichage">
+        <app-add-etudiant  [data]="currentEtudiant" (btn)="btn($event)" ></app-add-etudiant>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

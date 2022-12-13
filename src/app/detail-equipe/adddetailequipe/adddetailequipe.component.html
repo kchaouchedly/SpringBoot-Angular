@@ -1,0 +1,95 @@
+
+     <app-header></app-header>
+     <style>
+
+      .caption{
+        width: 150%;
+        z-index: 1;
+        top: 40%;
+        text-transform: uppercase;
+        position : absolute;
+  left : 200px;
+  top  : 90px;
+      }
+     
+     
+      
+     </style>
+
+    
+<app-sidebar>
+ 
+</app-sidebar>
+<div  class="caption d-flex flex-column align-items  ">
+  <div class="content-wrapper">
+<div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+     <div class="card-body">
+            <h4 class="card-title"> Ajouter detail Equipe </h4>
+            <p class="card-description"></p>
+            <form >
+              
+              <div class="form-group">
+                  <label [ngStyle]="{'font-style': 'italic'}" >salle</label>
+                <input  [ngStyle]="{'font-style': 'italic'}" ngModel [(ngModel)]="detailequipe.salle" class="form-control phone"   pattern="^[0-9]?" name="salle" maxlength="28" placeholder="Entre..." #salle="ngModel"  />
+                <div  class="text-danger" *ngIf="salle.invalid && salle.touched" >
+                  <div class="text-danger" *ngIf="salle.errors?.['required']" >
+              required</div>
+        
+              
+              <div  class="text-danger" *ngIf="salle.errors?.['pattern']" >
+              le nombre de salle entre 0 et 9 
+              </div>
+              
+              
+              </div>
+             
+           
+              </div>
+              <div class="form-group" >
+                <label [ngStyle]="{'font-style': 'italic'}">thematique</label>
+                <input  [ngStyle]="{'font-style': 'italic'}"  ngModel  [(ngModel)]="detailequipe.thematique" class="form-control phone" required minlength="3" pattern="[a-zA-Z]*" name="thematique" maxlength="28" placeholder="Entrer..." #thematique="ngModel" />
+                <div *ngIf="thematique.invalid && thematique.touched" >
+                  <div class="text-danger" *ngIf="thematique.errors?.['required']" >
+              required</div>
+              
+              <div class="text-danger" *ngIf="thematique.errors?.['minlength']" >
+              minlength
+              </div>
+              
+              
+              <div class="text-danger"  *ngIf="thematique.errors?.['pattern']" >
+              pattern
+              </div>
+              
+              
+              </div>
+             
+                </div>
+			       <div class="form-group">
+                  <label [ngStyle]="{'font-style': 'italic'}">Nom equipe</label>
+               <select [ngStyle]="{'font-style': 'italic'}" ngModel [(ngModel)]="detailequipe.idEquipe" name="idEquipe" id="idEequipe" class="form-control phone" name="thematique" maxlength="28" placeholder="Entrer..."  >
+<option *ngFor=" let e of listeequipe" value="{{e?.idEquipe}}">{{e?.nomEquipe}}</option>
+               </select>
+           
+              </div>
+              
+              <div  [ngStyle]="{'font-style': 'italic'}" class="form-group">
+                <input class="btn  btn-primary me-2" type="submit" name="submit_reg" (click)="submit(detailequipe)"  value="Ajouter">
+                
+            </div>
+     
+       
+        
+
+          </form> 
+           
+          </div>
+        
+          <div></div>
+        </div>
+    <div></div>
+</div>
+
+      <app-footer></app-footer>
+      </div>
