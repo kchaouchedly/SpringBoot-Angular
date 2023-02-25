@@ -1,0 +1,9 @@
+.caption{
+    width: 150%;
+    z-index: 1;
+    top: 40%;
+    text-transform: uppercase;
+    position : absolute;
+left : 200px;
+top  : 90px;
+  }

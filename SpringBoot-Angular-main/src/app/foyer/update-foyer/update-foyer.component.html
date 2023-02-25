@@ -1,0 +1,37 @@
+<!-- <p>update-foyer works!</p> -->
+<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modifier Foyer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #f="ngForm">
+          <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Type </label>
+            <input class="form-control" type="text" name="type" [(ngModel)]="foy.type"  #type="ngModel"  >
+        </div>
+          <div class="form-group">
+              <label for="example-text-input" class="form-control-label">date debut contrat Foyer </label>
+              <input class="form-control" type="text" name="date_debutFoyer" [(ngModel)]="foy.date_debutFoyer"  #date_debutFoyer="ngModel"  >
+          </div>
+          <div class="form-group">
+            <label for="example-text-input" class="form-control-label">date Fin contrat Foyer </label>
+            <input class="form-control" type="text" name="date_FinFoyer" [(ngModel)]="foy.date_FinFoyer"  #date_FinFoyer="ngModel"  >
+        </div>
+        <div class="form-group">
+          <label for="example-text-input" class="form-control-label">nombre de place Foyer </label>
+          <input class="form-control" type="text" name="nbplace" [(ngModel)]="foy.nbplace"  #nbplace="ngModel"  >
+      </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateUniv()" >Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>

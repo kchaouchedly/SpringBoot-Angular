@@ -1,0 +1,76 @@
+
+    <style>
+      .caption{
+        width: 150%;
+        z-index: 1;
+        top: 40%;
+        text-transform: uppercase;
+        position : absolute;
+  left : 200px;
+  top  : 90px;
+      }
+
+     </style>
+
+    
+<app-header></app-header> 
+<app-sidebar></app-sidebar>
+<div  class="caption d-flex flex-column align-items  ">
+  <div class="content-wrapper">
+<div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+     <div class="card-body">
+            <h4 class="card-title">Update Equipe </h4>
+            <p class="card-description"></p>
+            <form  #f="ngForm">
+              <div class="submit-form">
+          
+                <div class="form-group">
+                    <label >salle</label>
+                  <input ngModel [(ngModel)]="detailequipe.salle" class="form-control phone" name="salle" maxlength="28" placeholder="Entre..." />
+                 
+             
+                </div>
+                <div class="form-group" >
+                  <label >thematique</label>
+                  <input   ngModel [(ngModel)]="detailequipe.thematique" class="form-control phone" name="thematique" maxlength="28" placeholder="Entrer..." />
+
+               
+                  </div>
+                     <div class="form-group">
+                    <label >Nom equipe</label>
+                 <select ngModel [(ngModel)]="detailequipe.idEquipe" name="idEquipe" id="idEquipe" class="form-control phone" maxlength="28" placeholder="Entrer..."  >
+  <option *ngFor=" let e of listeequipe" value="{{e?.idEquipe}}">{{e?.nomEquipe}}</option>
+                 </select>
+             
+                </div>
+              <div class="form-group">
+                <input type="submit"  class ="btn btn-primary "value="save" (click)="editDetailEquipe(f.value)" >
+   
+                <button class="btn btn-danger" [routerLink]="['/listequipe']" >cancel</button> 
+            </div>
+          
+          </div>
+      
+        
+ </form>
+ <div class="card-footer" *ngIf="showAlert">
+    <div class="alert alert-success">
+        <button (click)="closeAlert()" class="close">
+            &times;
+        </button>
+        <strong>Success</strong>
+    </div>
+</div>
+
+           
+        
+</div>
+        
+      
+</div>
+
+</div>
+<app-footer></app-footer>
+
+</div>

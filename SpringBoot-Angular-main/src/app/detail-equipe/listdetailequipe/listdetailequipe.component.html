@@ -1,0 +1,80 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<app-footer></app-footer>
+<style>
+
+
+      .caption{
+        width: 150%;
+        z-index: 1;
+        top: 40%;
+        text-transform: uppercase;
+        position : absolute;
+  left : 200px;
+  top  : 95px;
+  size-adjust: 10px;
+  
+      }
+      .my-custom-scrollbar {
+position: relative;
+height: 440px;
+
+overflow: auto;
+}
+      .table-wrapper-scroll-y {
+display: block;
+}
+
+
+
+      </style>
+<script>
+    $('table').scrollTableBody();
+</script>
+
+<div class="caption d-flex flex-column align-items ">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Liste des Details Equipes </h4>
+      <p class="card-description">
+      
+      <button type="submit" class=" btn btn-primary me-2"[routerLink]="['/adddetailequipe']" > Ajouter Detail Equipe  </button>
+    
+      </p>
+  
+      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table ">
+   
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>salle</th>
+                    <th>thematique</th>
+                <th>nomEquipe</th>
+                <th>Action</th><th>Action</th>
+          
+      
+                
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let e of detailequipes">
+                    <td>{{e.idDetailEquipe}}</td>
+                    <td>{{e.salle}}</td>
+                    <td>{{e.thematique}}</td>
+                    <td>{{e.equipe.nomEquipe}}</td>
+                    
+                    <td class="text-center"><button class=" btn btn-danger btn-xs" (click)=" ondelete(e.idDetailEquipe)" ><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                    
+        
+                    </td>
+                   <td class="text-center">  <button class="btn btn-primary btn-xs" [routerLink]="['/editdetailequipe',e.idDetailEquipe]"  ><span class="glyphicon glyphicon-remove"></span> edit</button></td>
+                  </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+   
+    </div>
+  
+  </div>

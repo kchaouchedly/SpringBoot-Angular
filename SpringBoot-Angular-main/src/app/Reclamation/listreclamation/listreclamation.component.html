@@ -1,0 +1,110 @@
+
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<style>
+
+
+      .caption{
+        width: 150%;
+        z-index: 1;
+        top: 40%;
+        text-transform: uppercase;
+        position : absolute;
+  left : 200px;
+  top  : 95px;
+  size-adjust: 10px;
+  
+      }
+      .my-custom-scrollbar {
+position: relative;
+height: 440px;
+
+overflow: auto;
+}
+      .table-wrapper-scroll-y {
+display: block;
+}
+      </style>
+<script>
+    $('table').scrollTableBody();
+</script>
+
+<div class="caption d-flex flex-column align-items ">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Liste des Reclamation</h4>
+        <p class="card-description">
+         <button class="m-3 btn btn-sm btn-danger" (click)="deleteallrec()"> Remove All</button>
+        <button type="submit" class="btn btn-primary me-2"(click)="add()" (click)="notform('Remplir le formulaire en bas de la page')"> Ajouter Une Reclamation </button>
+        <p style="margin-left: 950px"> <input  id="myInput"  type="text" placeholder="Search..">
+        </p>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th> Identifiant</th>
+                <th>
+                  Nom reclamation
+                </th>
+                <th>
+                  sujet
+                </th>
+                <th>
+                 contenu
+     
+                </th>
+                <th>
+              date Reclamation
+                </th>
+              
+               
+                </tr>
+            </thead>
+            <tbody  id="myTable" *ngFor=" let e of all"  >
+            <tr >
+              <td>
+              {{e.idReclamation}}
+              </td>
+              <td>
+            {{e.nomRec}}
+              </td>
+              <td>
+              {{e.sujet}}
+            </td>
+              <td>
+              {{e.contenu}}
+              </td>
+              <td>
+           {{e.daterec}}
+              </td>
+             
+              <td>  
+               
+                <button style="color:red" type="submit" class="btn btn-danger btn-sm" (click)="deletereclamation(e.idReclamation)"> Supprimer </button>
+                <button style="color:blue" type="submit" class="btn btn-secondary btn-sm" (click)="getAffichage(e)" (click)="notsupp('Remplir le formulaire de modification en bas de la page')"> Modifier </button> 
+                <button  class="btn btn-secondary" onclick="window.print()" (click)="notsupp('Impression annulé')" ><i class="fa fa-print" aria-hidden="true"></i> Imprimer</button>  
+              </td>
+         
+</tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      
+      <div *ngIf="affichage">
+
+       
+          <app-addreclamation [data]="currentReclamation" (btn)="btn($event)" > </app-addreclamation>
+      
+      </div>
+    </div>
+  </div>
+
+
+<app-footer></app-footer>
+
+  

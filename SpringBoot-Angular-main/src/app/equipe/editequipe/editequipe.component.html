@@ -1,0 +1,83 @@
+
+
+
+   
+
+     <style>
+      .caption{
+        width: 200%;
+        z-index: 1;
+        top: 40%;
+        text-transform: uppercase;
+        position : absolute;
+  left : 500px;
+  top  : 150px;
+      }
+      .content-wrapper{
+
+
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+     </style>
+
+    
+
+
+  <div class="content-wrapper">
+<div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+     <div class="card-body">
+         
+            <p class="card-description"></p>
+      <form #f="ngForm">
+        <div class="card-footer" *ngIf="showalert">
+          <div class="alert alert-success">
+            <button (click)="closeAlert()" class="close">
+              &times;
+          </button>
+      
+      <strong>Success</strong>
+          </div>
+      </div>
+              <div class="form-group">
+                <label for="exampleInputUsername1">Nom equipe</label>
+                <input  ngModel [(ngModel)]="equipe.nomEquipe" name="nomEquipe"  
+                class="form-control phone" maxlength="28" placeholder="Entrer le non de l'equipe..." />
+           
+              </div>
+              <div class="form-group">
+      <label for="exampleInputEmail1">Niveau</label>
+<select  id="ddlViewBy" ngModel [(ngModel)]="equipe.niveau"  class="form-control phone" name="niveau"  maxlength="28"  >
+<option class="dropdown-item" value=" JUNIOR"> JUNIOR</option>
+<option class="dropdown-item" value=" SENIOR "> SENIOR </option>
+<option class="dropdown-item" value=" EXPERT"> EXPERT</option>
+
+</select>
+           
+              </div>
+              
+ 
+              <div class="form-group">
+               
+                
+            </div>
+     
+       
+    
+  <input type="submit"  class =" btn btn-danger me-2" value="save" (click)="onSubmitUpdate(f.value)" >
+   
+
+</form>
+ 
+           
+           
+          </div>
+        
+          <div></div>
+        </div>
+    <div></div>
+</div>
+
+ 
+</div>

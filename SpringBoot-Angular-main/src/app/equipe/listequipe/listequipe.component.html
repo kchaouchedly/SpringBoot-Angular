@@ -1,0 +1,119 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<app-footer></app-footer>
+<style>
+
+
+
+      .caption{
+        width: 150%;
+        z-index: 1;
+        top: 40%;
+        text-transform: uppercase;
+        position : absolute;
+  left : 200px;
+  top  : 95px;
+  size-adjust: 10px;
+  
+      }
+      .my-custom-scrollbar {
+position: relative;
+height: 440px;
+
+overflow: auto;
+}
+      .table-wrapper-scroll-y {
+display: block;
+}
+
+
+
+
+      </style>
+<script>
+    $('table').scrollTableBody();
+</script>
+
+<div class="caption d-flex flex-column align-items ">
+  
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Liste des Equipes </h4>
+        <div id="">
+          <div >
+              <input type="text" class="search-query form-control" placeholder="Search With Email Nom Equipe"  name="nomEquipe" [(ngModel)]="nomEquipe">
+           
+                  <button class="btn btn-light" type="button" (click)="findEquipeByNOm(nomEquipe)"> search
+                </button>
+      
+          </div>
+  
+      </div>
+        <p class="card-description">
+        
+        <button type="submit" class=" btn btn-primary me-2"[routerLink]="['/addequipe']" > Ajouter Un Equipe  </button>
+        <button type="submit" class=" btn btn-warning  me-2"(click)="getUsersListPdf()" > Export PDF  </button>
+        </p>
+    
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+          <table class="table table ">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Niveau</th>
+                    <th>Action</th>
+                    <th>Action</th>
+           
+            
+                </tr>
+            </thead>
+            <tbody>
+     
+                <tr *ngFor="let equipe of listequipes index as i">
+                <!-- <div [ngStyle]="{'backgroundColor':equipe.nomEquipe=='hhhh'?'red':'green'}">
+                    index: {{i}}--> 
+                    <td>{{equipe.idEquipe}}</td>
+                    <td>{{equipe.nomEquipe}}</td>
+                    <td>{{equipe.niveau}}</td>
+                 <!-- </div>-->
+                    <td class="text-center"><button class="btn btn-danger btn-xs" (click)="deleteEquipe(equipe.idEquipe)" ><span class="glyphicon glyphicon-remove"></span> Delete</button></td>
+     <td class="text-center"><button class =" btn btn-primary btn-xs" (click)="showFormUpdate(equipe)" > Update</button></td>
+                  </tr>
+               
+            </tbody>
+            
+          </table>
+      
+          <div *ngIf="show">
+            <app-editequipe [equipe]="singleEquipe" (test)="afterrecvData($event)"></app-editequipe>
+            </div>
+            
+  <pagination-controls
+            previousLabel="Precedent"
+            nextLabel="Suivant"
+        [responsive]="true"
+        (pageChange)="handlepagechange($event)"
+            ></pagination-controls>
+            <ul>
+              <li  
+              class="list-group-item"
+              *ngFor="let e of listequipes | paginate:{
+              itemsPerPage:PAGESIZE,currentPage:PAGE,
+              totalItems:count
+              } ;let i = index "
+             
+              [class.active] = "i === CURRENTINDEX"
+              
+              >
+             
+            
+            </li>
+            </ul>
+          
+        </div>
+      </div>
+   
+    </div>
+
+  </div>
